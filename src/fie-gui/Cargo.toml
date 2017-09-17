@@ -1,0 +1,15 @@
+[package]
+name = "fie"
+version = "0.1.0"
+authors = ["cirno"]
+build = "build.rs"
+
+[[bin]]
+name = "fie-gui"
+path = "src/main.rs"
+
+[build-dependencies]
+embed-resource = "1.1"
+
+[dependencies]
+sylphid = { version = "0.1.0", path = "../sylphid" }

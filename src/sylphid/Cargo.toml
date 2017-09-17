@@ -1,0 +1,12 @@
+[package]
+name = "sylphid"
+version = "0.1.0"
+authors = ["cirno"]
+
+[lib]
+name = "sylphid"
+crate-type = ["cdylib","rlib"]
+
+[dependencies]
+rand = "*"
+image = "*"
