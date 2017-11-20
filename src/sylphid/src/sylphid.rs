@@ -28,9 +28,13 @@ fn init_centers(img: &Vec<Pixel>, num: u32) -> Vec<Pixel> {
     let size = img.len();
     let mut centers = Vec::<Pixel>::new();
     let mut rng = rand::thread_rng();
-    for _ in 0..num {
-        let rand_num = rng.gen::<usize>()%size;
-        centers.push(img[rand_num].clone())
+    while centers.len() < num as usize {
+        for _ in centers.len()..(num as usize) {
+            let rand_num = rng.gen::<usize>()%size;
+            centers.push(img[rand_num].clone())
+        }
+        centers.sort();
+        centers.dedup();
     }
     centers
 }
@@ -40,7 +44,7 @@ fn recenter(pixels: &Vec<Pixel>) -> Pixel {
     pixels.iter().skip(1).fold(
         pixels[0].iter()
         .fold(Vec::new(),|mut acc,x| {acc.push(*x as u32);acc})
-        ,|acc, pixel| 
+        ,|acc, pixel|
             acc.iter()
             .zip(pixel.iter()
             .fold(Vec::new(),|mut acc,x| {acc.push(*x as u32);acc})
